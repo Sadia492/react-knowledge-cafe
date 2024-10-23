@@ -1,6 +1,9 @@
-import React from "react";
-
-export default function Blog({ blog, handleBookmark, handleMarkAsRead }) {
+export default function Blog({
+  blog,
+  handleBookmark,
+  handleMarkAsRead,
+  bookmark,
+}) {
   const {
     id,
     cover,
@@ -11,6 +14,9 @@ export default function Blog({ blog, handleBookmark, handleMarkAsRead }) {
     author,
     author_img,
   } = blog;
+  // Check if the current blog is bookmarked
+  const isBookmarked = bookmark.find((item) => item.id === id);
+
   return (
     <div className="pb-4 border-b-2 mb-6">
       <img className="w-full" src={cover} alt="" />
@@ -25,10 +31,14 @@ export default function Blog({ blog, handleBookmark, handleMarkAsRead }) {
         <div>
           <p className="flex justify-center items-center">
             {reading_time} min read
-            <button onClick={() => handleBookmark(blog, id)}>
+            <button
+              onClick={() => {
+                handleBookmark(blog, id);
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
+                fill={isBookmarked ? "blue" : "none"} // Change color if bookmarked
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"

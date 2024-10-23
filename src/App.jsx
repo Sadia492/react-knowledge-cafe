@@ -16,7 +16,7 @@ function App() {
   const handleBookmark = (blog, id) => {
     const isExist = bookmark.find((blog) => blog.id === id);
     if (isExist) {
-      alert("already exists");
+      alert("Already exists");
     } else {
       setBookmark([...bookmark, blog]);
     }
@@ -24,14 +24,14 @@ function App() {
 
   return (
     <div className="w-4/5 mx-auto">
-      <Header></Header>
-
+      <Header />
       <div className="grid grid-cols-3 gap-6">
         <Blogs
           handleBookmark={handleBookmark}
           handleMarkAsRead={handleMarkAsRead}
-        ></Blogs>
-        <Sidebar readTime={readTime} bookmark={bookmark}></Sidebar>
+          bookmark={bookmark} // Pass bookmark to Blogs component
+        />
+        <Sidebar readTime={readTime} bookmark={bookmark} />
       </div>
     </div>
   );

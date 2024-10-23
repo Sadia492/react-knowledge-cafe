@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blog";
 
-export default function Blogs({ handleBookmark, handleMarkAsRead }) {
+export default function Blogs({ handleBookmark, handleMarkAsRead, bookmark }) {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     fetch("./blogs.json")
@@ -17,6 +17,7 @@ export default function Blogs({ handleBookmark, handleMarkAsRead }) {
           key={blog.id}
           handleBookmark={handleBookmark}
           handleMarkAsRead={handleMarkAsRead}
+          bookmark={bookmark}
           blog={blog}
         ></Blog>
       ))}

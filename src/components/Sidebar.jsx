@@ -13,7 +13,10 @@ export default function Sidebar({ bookmark, readTime }) {
         </h2>
         <div>
           {bookmark.map((blog) => (
-            <h2 className="bg-white p-3 rounded-lg font-semibold text-lg mb-2">
+            <h2
+              key={blog.id}
+              className="bg-white p-3 rounded-lg font-semibold text-lg mb-2"
+            >
               {blog.title}
             </h2>
           ))}
