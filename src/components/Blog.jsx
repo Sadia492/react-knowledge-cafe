@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Blog({ blog }) {
+export default function Blog({ blog, handleBookmark, handleMarkAsRead }) {
   const {
     id,
     cover,
@@ -25,7 +25,7 @@ export default function Blog({ blog }) {
         <div>
           <p className="flex justify-center items-center">
             {reading_time} min read
-            <button>
+            <button onClick={() => handleBookmark(blog, id)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -46,11 +46,14 @@ export default function Blog({ blog }) {
       </div>
       <h2 className="font-bold text-4xl">{title}</h2>
       <div className="flex gap-3 my-4">
-        {hashtags.map((single) => (
-          <p>#{single}</p>
+        {hashtags.map((single, i) => (
+          <p key={i}>#{single}</p>
         ))}
       </div>
-      <button className="text-purple-700 underline font-bold ">
+      <button
+        onClick={() => handleMarkAsRead(reading_time, id)}
+        className="text-purple-700 underline font-bold "
+      >
         Mark as read
       </button>
     </div>
